@@ -19,6 +19,9 @@ contract CollateralSupply is Test, Tester {
         deal(address(USDT), withdrawer2, piece);
         deal(address(USDT), admin, amount);
 
+        vUSDT.accrueInterest();
+        vUSDD.accrueInterest();
+
         vm.startPrank(withdrawer);
         USDT.approve(address(vUSDT), amount);
         vm.stopPrank();

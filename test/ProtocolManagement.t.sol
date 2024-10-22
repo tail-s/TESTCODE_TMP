@@ -10,6 +10,7 @@ contract CollateralSupply is Test, Tester {
 
     function setUp() public {
         cheat.createSelectFork("bsc_mainnet", BLOCK_NUMBER);
+        vUSDT.accrueInterest();
     }
 
     function test_setPriceOracle() public {
@@ -31,12 +32,13 @@ contract CollateralSupply is Test, Tester {
 
     function test_admin_checkReserveAmount() public {
         vm.startPrank(admin);
-        uint reserves = vUSDT.totalReserves();
         
+        vUSDT.accrueInterest();
+        uint reserves = vUSDT.totalReserves();
+
         vm.expectRevert(abi.encodeWithSelector(bytes4(keccak256("ReduceReservesCashValidation()"))));
-        vUSDT.reduceReserves(reserves + 3.156944 * 1e18);
-        reserves = vUSDT.totalReserves();
-        vUSDT.reduceReserves(reserves + 3.156943 * 1e18);
+        vUSDT.reduceReserves(reserves + 1);
+        vUSDT.reduceReserves(reserves);
     }
 
     function test_setCloseFactor() public {
