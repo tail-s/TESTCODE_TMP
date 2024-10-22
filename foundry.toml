@@ -4,3 +4,7 @@ out = "out"
 libs = ["lib"]
 
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
+[rpc_endpoints]
+mainnet = "https://eth-mainnet.g.alchemy.com/v2/cTrc4K5LR0jvtNv875uTLvGIDGhv9nCi"
+bsc ="https://bsc-dataseed.bnbchain.org"
+bsc_mainnet="https://wild-dry-choice.bsc.quiknode.pro/b138c09f1a998d46cafb08aedf9a93d900b3739b"
